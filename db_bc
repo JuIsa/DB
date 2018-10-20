@@ -1,0 +1,268 @@
+#          book
+
+
+DROP TABLE IF EXISTS book;
+		
+CREATE TABLE book (
+  id INT(8) NULL DEFAULT NULL,
+  author INT NULL DEFAULT NULL,
+  name varchar(62) NULL DEFAULT NULL,
+  genre SMALLINT NULL DEFAULT NULL,
+  pub_date DATE NULL DEFAULT NULL,
+  language INT(2) NULL DEFAULT NULL,
+  taken_status INT NULL DEFAULT NULL,
+  type INT NULL DEFAULT NULL,
+  сountry INT NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+#////////////////author 
+
+
+DROP TABLE IF EXISTS author;
+		
+CREATE TABLE author (
+  id INT NULL DEFAULT NULL,
+  name VARCHAR(64) NULL DEFAULT NULL,
+  bitrth_date DATE NULL DEFAULT NULL,
+  country INT NULL DEFAULT NULL,
+  books INT NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#/////////////// genre
+
+DROP TABLE IF EXISTS genre;
+		
+CREATE TABLE genre (
+  id INT(3) NULL AUTO_INCREMENT DEFAULT NULL,
+  name varchar NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#//////////////// members 
+
+
+DROP TABLE IF EXISTS members;
+		
+CREATE TABLE members (
+  id int(4) NULL AUTO_INCREMENT DEFAULT NULL,
+  name VARCHAR(32) NULL DEFAULT NULL,
+  age DATE NULL DEFAULT NULL,
+  fee_type int NULL DEFAULT NULL,
+  department int NULL DEFAULT NULL,
+  admin_status int NULL DEFAULT NULL,
+  auca_id int NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#//////////////language
+
+DROP TABLE IF EXISTS language;
+		
+CREATE TABLE language (
+  id int(2) NULL AUTO_INCREMENT DEFAULT NULL,
+  name VARCHAR(16) NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#//////////////type
+
+DROP TABLE IF EXISTS type;
+		
+CREATE TABLE type (
+  id INT NULL AUTO_INCREMENT DEFAULT NULL,
+  name varchar NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#////////////////// events
+
+
+DROP TABLE IF EXISTS events;
+		
+CREATE TABLE events (
+  id INT NULL DEFAULT NULL,
+  type INT NULL DEFAULT NULL,
+  date INT NULL DEFAULT NULL,
+  supervisor INT NULL DEFAULT NULL,
+  participants INT NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#/////////////////  budget
+
+
+DROP TABLE IF EXISTS budget;
+		
+CREATE TABLE budget (
+  auca_fund INT NULL DEFAULT NULL,
+  fee INT NULL DEFAULT NULL,
+  donate INT NULL DEFAULT NULL,
+  PRIMARY KEY (auca_fund)
+);
+
+
+# /////////////////  fee
+
+
+DROP TABLE IF EXISTS fee;
+		
+CREATE TABLE fee (
+  id INT NULL DEFAULT NULL,
+  type INT NULL AUTO_INCREMENT DEFAULT NULL,
+  duration INT NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+#/////////////// counrty
+
+
+DROP TABLE IF EXISTS counrty;
+		
+CREATE TABLE counrty (
+  id INT NULL AUTO_INCREMENT DEFAULT NULL,
+  name INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+#/////////////// event_type
+
+
+DROP TABLE IF EXISTS event_type;
+		
+CREATE TABLE event_type (
+  id INT NULL AUTO_INCREMENT DEFAULT NULL,
+  name INT NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+
+#  /////////////  readed_authorship
+
+
+DROP TABLE IF EXISTS readed_authorship;
+		
+CREATE TABLE readed_authorship (
+  id INT NULL DEFAULT NULL,
+  member INT NULL DEFAULT NULL,
+  author INT NULL AUTO_INCREMENT DEFAULT NULL,
+  book INT(8) NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+#////////////// waitlist
+
+DROP TABLE IF EXISTS waitlist;
+		
+CREATE TABLE waitlist (
+  id INTEGER NULL DEFAULT NULL,
+  member INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  book INTEGER(8) NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+#///////////////// taken
+
+DROP TABLE IF EXISTS taken;
+		
+CREATE TABLE taken (
+  member INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  book INTEGER(8) NULL DEFAULT NULL
+);
+
+#////////////// depatment
+
+DROP TABLE IF EXISTS department;
+		
+CREATE TABLE department (
+  id INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  name VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+////////////////////////////////////////////////////////////
+/////////////////
+///////////////////////////////////////
+/////////////////
+///////////////////////////////////////////////////////////
+
+ALTER TABLE book ADD FOREIGN KEY (author) REFERENCES author (id);
+ALTER TABLE `book` ADD FOREIGN KEY (genre) REFERENCES `genre` (`id`);
+ALTER TABLE `book` ADD FOREIGN KEY (language) REFERENCES `language` (`id`);
+ALTER TABLE `book` ADD FOREIGN KEY (type) REFERENCES `type` (`id`);
+ALTER TABLE `book` ADD FOREIGN KEY (country) REFERENCES `counrty` (`id`);
+ALTER TABLE `author` ADD FOREIGN KEY (country) REFERENCES `counrty` (`id`);
+ALTER TABLE `members` ADD FOREIGN KEY (fee_type) REFERENCES `fee` (`id`);
+ALTER TABLE `members` ADD FOREIGN KEY (department) REFERENCES `department` (`id`);
+ALTER TABLE `events` ADD FOREIGN KEY (type) REFERENCES `event_type` (`id`);
+ALTER TABLE `events` ADD FOREIGN KEY (supervisor) REFERENCES `members` (`id`);
+ALTER TABLE `events` ADD FOREIGN KEY (participants) REFERENCES `members` (`id`);
+ALTER TABLE `readed_authorship` ADD FOREIGN KEY (member) REFERENCES `members` (`id`);
+ALTER TABLE `readed_authorship` ADD FOREIGN KEY (author) REFERENCES `author` (`id`);
+ALTER TABLE `readed_authorship` ADD FOREIGN KEY (book) REFERENCES `book` (`id`);
+ALTER TABLE `waitlist` ADD FOREIGN KEY (member) REFERENCES `members` (`id`);
+ALTER TABLE `waitlist` ADD FOREIGN KEY (book) REFERENCES `book` (`id`);
+ALTER TABLE `taken` ADD FOREIGN KEY (member) REFERENCES `members` (`id`);
+ALTER TABLE `taken` ADD FOREIGN KEY (book) REFERENCES `book` (`id`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `book` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `author` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `genre` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `members` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `language` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `type` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `events` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `budget` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `fee` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `counrty` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `event_type` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `readed_authorship` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `waitlist` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `taken` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `department` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `book` (`id`,`author`,`name`,`genre`,`pub_date`,`language`,`taken_status`,`type`,`country`) VALUES
+-- ('','','','','','','','','');
+-- INSERT INTO `author` (`id`,`name`,`bitrth_date`,`country`,`books`) VALUES
+-- ('','','','','');
+-- INSERT INTO `genre` (`id`,`name`) VALUES
+-- ('','');
+-- INSERT INTO `members` (`id`,`name`,`age`,`fee_type`,`department`,`admin_status`,`auca_id`) VALUES
+-- ('','','','','','','');
+-- INSERT INTO `language` (`id`,`name`) VALUES
+-- ('','');
+-- INSERT INTO `type` (`id`,`name`) VALUES
+-- ('','');
+-- INSERT INTO `events` (`id`,`type`,`date`,`supervisor`,`participants`) VALUES
+-- ('','','','','');
+-- INSERT INTO `budget` (`auca_fund`,`fee`,`donate`) VALUES
+-- ('','','');
+-- INSERT INTO `fee` (`id`,`type`,`duration`) VALUES
+-- ('','','');
+-- INSERT INTO `counrty` (`id`,`name`) VALUES
+-- ('','');
+-- INSERT INTO `event_type` (`id`,`name`) VALUES
+-- ('','');
+-- INSERT INTO `readed_authorship` (`id`,`member`,`author`,`book`) VALUES
+-- ('','','','');
+-- INSERT INTO `waitlist` (`id`,`member`,`book`) VALUES
+-- ('','','');
+-- INSERT INTO `taken` (`member`,`book`) VALUES
+-- ('','');
+-- INSERT INTO `department` (`id`,`name`) VALUES
+-- ('','');
