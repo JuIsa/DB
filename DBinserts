@@ -1,0 +1,82 @@
+
+
+
+INSERT INTO country(id, name) values (1, 'US'), (2, 'UK'), (3, 'Japan'), (4, 'Russia'), (5, 'Kyrgyzstan'), (6,'Oranje-Vrijstaat');
+
+INSERT INTO language(id, name) values (1, 'English'), (2, 'Russian');
+
+INSERT INTO genre(id, name) values(1, 'Drama'), (2, 'Fantasy'), (3, 'Poetry'), (4, 'Biography'), (5, 'Dystopia'), (6, 'Novel'), (7, 'Comedy');
+
+INSERT INTO type(id, name) values(1, 'Paper'), (2, 'Graphic Novel'), (3, 'Manga'), (4, 'Audiobook');
+
+INSERT INTO event_type(id, name) values(1, 'TeamB'), (2, 'Discussion'), (3, 'PoetryR'), (4, 'Quizz');
+
+INSERT INTO fee(id, type, duration) values
+                (1, 1, '1 semester'),
+                (2, 2, '1 year');
+
+
+INSERT INTO auca_based_fund(id, money) values(1, 6900);
+
+INSERT INTO department(id, name) values (1, 'SFW'), (2, 'ECO'), (3, 'Math'), (4, 'PSY'), (5, 'SOC'), (6, 'BA'), (7, 'TV');
+
+INSERT INTO author(id, fname, lname, bdate, country) values 
+                (1,'George', 'Orwell','1912-06-04', 1),
+                (2, 'Haruki', 'Murakami', '1949-01-12',3),
+                (3, 'Ernest', 'Hemingway', '1899-07-21', 1),
+                (4, 'Agatha', 'Christie', '1890-09-15', 2),
+                (5, 'John', 'Tolkien', '1892-01-03', 6),
+                (6, 'Ray', 'Bradbury', '1920-08-22', 1),
+                (7, 'Douglas', 'Adams', '1952-03-11', 2),
+                (8, 'Anton', 'Chehov', '1860-01-17', 4),
+                (9, 'Jack', 'London', '1876-01-12', 1),
+                (10, 'Hiroshi', 'Sakurazaka', '1970-01-01', 3),
+                (11, 'Daniel', 'Keyes', '1927-09-08', 1),
+                (12, 'Walter', 'Isaacson', '1952-20-05', 1),
+                (13, 'Victor', 'Pelevin', '1962-22-10', 4),
+                (14, 'Alan', 'Moore', '1953-18-10', 2);
+
+INSERT INTO book(id, author, name, genre, pub_date, language, taken_status, type, country) values 
+                (1, 1, '1984', 5,  '1949-01-01', 2, '0', 1, 1),
+                (2, 2, 'Norwegian Wood', 6, '1987-01-01', 2, '0', 1, 3), 
+                (3, 3, 'A Farewell to Arms', 6, '1929-01-01', 2, '0', 1, 1), 
+                (4, 4, 'Ten Little Niggers', 6, '1939-01-01', 2, '0', 1, 2), 
+                (5, 5, 'The Lord of the Rings', 6, '1954-01-01', 2, '0', 1, 2),
+                (6, 6, 'Fahrenheit 451', 5, '1953-01-01', 2, '0', 1, 1),
+                (7, 7, 'The Hitchhickers Guide to the Galaxy', 6, '1979-01-01', 2, '0', 1, 2),
+                (8, 8, 'Cherry Orchard', 7, '1903-01-01', 2, '0', 1, 4),
+                (9, 9, 'Martin Eden', 6, '1909-01-01', 2, '0', 1, 1),
+                (10, 6, 'Dandelion Wine', 6, '1957-01-01', 2, '0', 1, 1),
+                
+                (11, 10, 'All You Need is Kill', 2, '2004-01-01', 1, '0', 3, 3),
+                
+                (12, 2, 'Kafka on the Shore', 6, '2002-01-01', 2, '0', 1, 3),
+                
+                (13, 11, 'The Minds of Billy Milligan', 6, '1981-01-01', 2, '0', 1, 1),
+                
+                (14, 11, 'Flowers for Algernon', 2, '1959-01-01', 2, '0', 1, 1),
+                
+                (15, 12, 'Steve Jobs A Biography', 4, '2011-01-01', 2, '0', 1, 1),
+                
+                (16, 13, 'Empire v', 6, '2006-01-01', 2, '0', 1, 4),
+                
+                (17, 14, 'Watchmen', 2, '1986-01-01', 2, '0', 3, 2);
+               
+                
+INSERT INTO members(id, fname, lname, age, admin_status, auca_id, department, fee_type, sex) values 
+                (1, 'Isa', 'Zhanbolot', '1999-01-07', '0', 7321, 1, 1, 'M'),
+                (2, 'Vladislav', 'Pak', '1997-10-10', '0', 7322, 1, 1, 'M'),
+                (3, 'Nemo', 'Outis', '1998-01-01', '1', 7323, 2, 1, 'M'),
+                (4, 'Otto', 'Bismark', '1990-05-07', '1', 7324, 3, 1, 'M'),
+                (5, 'Laurie', 'Schneider', '1970-21-04', '1', 7325, 4, 1, 'F');
+                
+                
+                
+INSERT INTO authorship(author, book) values
+                (1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (6,10), (10,11), (12,2), (11,13), (11,14), (12,15), (13,16), (14,17);
+               
+
+
+
+
+
